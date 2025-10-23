@@ -1,0 +1,25 @@
+{
+  "name": "tiny-web-builder",
+  "version": "1.0.0",
+  "description": "A tiny website builder with live preview",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"pnpm --filter @tiny-web-builder/api dev\" \"pnpm --filter @tiny-web-builder/public dev\" \"pnpm --filter @tiny-web-builder/editor dev\"",
+    "dev:api": "pnpm --filter @tiny-web-builder/api dev",
+    "dev:public": "pnpm --filter @tiny-web-builder/public dev",
+    "dev:editor": "pnpm --filter @tiny-web-builder/editor dev",
+    "build": "pnpm --filter @tiny-web-builder/shared build && pnpm --filter @tiny-web-builder/api build && pnpm --filter @tiny-web-builder/public build && pnpm --filter @tiny-web-builder/editor build",
+    "install:all": "pnpm install",
+    "db:init": "wrangler d1 create tiny-builder-db --local",
+    "db:migrate": "wrangler d1 execute tiny-builder-db --local --file=./packages/api/schema.sql",
+    "db:seed": "wrangler d1 execute tiny-builder-db --local --file=./packages/api/seed.sql",
+    "kv:init": "wrangler kv namespace create SITE_CACHE --local"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=8"
+  }
+}
