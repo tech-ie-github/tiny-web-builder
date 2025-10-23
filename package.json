@@ -1,0 +1,15 @@
+{
+  "name": "tiny-web-builder",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "pnpm --parallel --filter './apps/*' dev",
+    "dev:api": "pnpm --filter @tiny-builder/api dev",
+    "dev:editor": "pnpm --filter @tiny-builder/editor dev",
+    "dev:public": "pnpm --filter @tiny-builder/public dev",
+    "build": "pnpm --recursive build",
+    "db:init": "wrangler d1 create tiny-builder-db --local",
+    "db:migrate": "wrangler d1 execute tiny-builder-db --local --file=./packages/api/schema.sql",
+    "kv:init": "wrangler kv:namespace create SITE_CACHE --local"
+  }
+}

@@ -1,0 +1,16 @@
+---
+const { id } = Astro.params;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Not Found</title>
+  </head>
+  <body style="font-family: system-ui; background: #0f172a; color: #f8fafc; min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+    <div style="text-align: center;">
+      <h1 style="font-size: 2.25rem; margin-bottom: 1rem;">Site not found</h1>
+      <p style="opacity: 0.8;">We couldn't find a site for ID <strong>{id ?? 'unknown'}</strong>.</p>
+    </div>
+  </body>
+</html>
