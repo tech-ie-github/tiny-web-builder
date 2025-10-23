@@ -99,11 +99,13 @@ export const useAutoSave = ({
   }, []);
 
   // Manual save function for immediate saves
-  const saveNow = useCallback(() => {
+  const saveNow = useCallback((siteToSave?: SiteContent) => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
-    save(siteDataRef.current);
+    // Use provided site data or current site data
+    const siteData = siteToSave || siteDataRef.current;
+    save(siteData);
   }, [save]);
 
   return {

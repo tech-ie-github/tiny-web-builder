@@ -123,11 +123,7 @@ function App() {
                     const updatedSite = { ...site, theme: newTheme };
                     setSite(updatedSite);
                     // Trigger immediate save for theme changes
-                    try {
-                      await saveNow();
-                    } catch (error) {
-                      console.error('Failed to save theme change:', error);
-                    }
+                    saveNow(updatedSite);
                   }}
                   className="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 pr-8"
                 >
