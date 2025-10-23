@@ -1,0 +1,16 @@
+---
+import { Site, THEMES } from '@tiny-builder/shared';
+
+const { id } = Astro.params;
+const apiBase = import.meta.env.API_BASE_URL ?? 'http://127.0.0.1:8787';
+const response = await fetch(`${apiBase}/api/site/${id}?published=0`);
+
+if (!response.ok) {
+  return Astro.redirect('/404');
+}
+
+const site = await response.json();
+const theme = THEMES[site.theme as keyof typeof THEMES] ?? THEMES.Serene;
+---
+
+<Site content={site} theme={theme} client:only="react" />
